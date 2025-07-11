@@ -10,6 +10,7 @@ RUN apt update && apt install -y \
 
 RUN useradd -m darkarmy0 && echo "darkarmy0:darkarmy0" | chpasswd && adduser darkarmy0 sudo
 RUN useradd -m darkarmy1 && echo "darkarmy1:darkarmy1" | chpasswd && adduser darkarmy1 sudo
+RUN useradd -m darkarmy2 && echo "darkarmy2:darkarmy2" | chpasswd && adduser darkarmy2 sudo
 
 RUN mkdir /var/run/sshd
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -17,6 +18,7 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 # Trying to remove the annoying message when ssh into the server
 RUN touch /home/darkarmy0/.hushlogin
 RUN touch /home/darkarmy1/.hushlogin
+RUN touch /home/darkarmy2/.hushlogin
 
 # Level 0
 RUN echo 'echo "Welcome to Spaidy lab"' >> /home/darkarmy0/.bashrc \
@@ -39,13 +41,16 @@ RUN touch "/home/darkarmy1/FLAG{LOGIN_SUCCESS}" \
     && echo "This is not the flag you're looking for." > "/home/darkarmy1/fake_flag.txt" \
     && chown -R darkarmy1:darkarmy1 /home/darkarmy1
 
-
+# Level 2
+RUN mkdir -p /home/darkarmy2/.hidden_folder
+RUN echo "dark_flag{ad8ec66dc93c9b0a84ae}" > /home/darkarmy2/.hidden_folder/flag.txt
 
 COPY ./nullsafety /usr/bin/nullsafety
 RUN chmod +x /usr/bin/nullsafety
 
 RUN chsh -s /usr/bin/bash darkarmy0
 RUN chsh -s /usr/bin/nullsafety darkarmy1
+RUN chsh -s /usr/bin/nullsafety darkarmy2
 
 # Expose SSH port
 EXPOSE 22
