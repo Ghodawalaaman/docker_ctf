@@ -11,6 +11,7 @@ RUN apt update && apt install -y \
 RUN useradd -m darkarmy0 && echo "darkarmy0:darkarmy0" | chpasswd && adduser darkarmy0 sudo
 RUN useradd -m darkarmy1 && echo "darkarmy1:darkarmy1" | chpasswd && adduser darkarmy1 sudo
 RUN useradd -m darkarmy2 && echo "darkarmy2:darkarmy2" | chpasswd && adduser darkarmy2 sudo
+RUN useradd -m darkarmy3 && echo "darkarmy3:darkarmy3" | chpasswd && adduser darkarmy3 sudo
 
 RUN mkdir /var/run/sshd
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -19,6 +20,7 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 RUN touch /home/darkarmy0/.hushlogin
 RUN touch /home/darkarmy1/.hushlogin
 RUN touch /home/darkarmy2/.hushlogin
+RUN touch /home/darkarmy3/.hushlogin
 
 # Level 0
 RUN echo 'echo "Welcome to Spaidy lab"' >> /home/darkarmy0/.bashrc \
@@ -45,12 +47,16 @@ RUN touch "/home/darkarmy1/FLAG{LOGIN_SUCCESS}" \
 RUN mkdir -p /home/darkarmy2/.hidden_folder
 RUN echo "dark_flag{ad8ec66dc93c9b0a84ae}" > /home/darkarmy2/.hidden_folder/flag.txt
 
+# Level 3
+RUN echo "echo 'Decrypt it with aes-256-cbc algorithm, the password is darkavengars: U2FsdGVkX18BY+S7hDZboK3+Qs31itEJ1sPLMx7UBAP6huEBIsoz010CocRr96NFbl/3hbJErjdKg/I75+ZGYg=='" >> /home/darkarmy3/.bashrc
+
 COPY ./nullsafety /usr/bin/nullsafety
 RUN chmod +x /usr/bin/nullsafety
 
 RUN chsh -s /usr/bin/bash darkarmy0
 RUN chsh -s /usr/bin/nullsafety darkarmy1
 RUN chsh -s /usr/bin/nullsafety darkarmy2
+RUN chsh -s /usr/bin/nullsafety darkarmy3
 
 # Expose SSH port
 EXPOSE 22
