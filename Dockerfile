@@ -18,13 +18,13 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 RUN touch /home/darkarmy0/.hushlogin
 RUN touch /home/darkarmy1/.hushlogin
 
-# Level 1
+# Level 0
 RUN echo 'echo "Welcome to Spaidy lab"' >> /home/darkarmy0/.bashrc \
     && echo 'echo "dark_flag{7c945bc1393bd504aad1}"' >> /home/darkarmy0/.bashrc \
     && echo 'exit' >> /home/darkarmy0/.bashrc \
     && chown -R darkarmy0:darkarmy0 /home/darkarmy0
 
-# Level 2
+# Level 1
 RUN mkdir -p /home/darkarmy1/dungeon \
     && mkdir -p /home/darkarmy1/lair/trap \
     && mkdir -p /home/darkarmy1/cave
