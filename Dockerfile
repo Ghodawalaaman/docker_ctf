@@ -48,7 +48,7 @@ RUN mkdir -p /home/darkarmy2/.hidden_folder
 RUN echo "dark_flag{ad8ec66dc93c9b0a84ae}" > /home/darkarmy2/.hidden_folder/flag.txt
 
 # Level 3
-RUN echo "echo 'Decrypt it with aes-256-cbc algorithm, the password is darkavengars: U2FsdGVkX18BY+S7hDZboK3+Qs31itEJ1sPLMx7UBAP6huEBIsoz010CocRr96NFbl/3hbJErjdKg/I75+ZGYg=='" >> /home/darkarmy3/.bashrc
+RUN echo "flag is encoded into a base32 string: MRQXE227MZWGCZ33MMZDENJRHAYWINJYGI4DANZXMRRDMYZVPUFA====" >> /home/darkarmy3/flag.base32
 
 COPY ./nullsafety /usr/bin/nullsafety
 RUN chmod +x /usr/bin/nullsafety
