@@ -12,6 +12,7 @@ RUN useradd -m darkarmy0 && echo "darkarmy0:darkarmy0" | chpasswd && adduser dar
 RUN useradd -m darkarmy1 && echo "darkarmy1:darkarmy1" | chpasswd && adduser darkarmy1 sudo
 RUN useradd -m darkarmy2 && echo "darkarmy2:darkarmy2" | chpasswd && adduser darkarmy2 sudo
 RUN useradd -m darkarmy3 && echo "darkarmy3:darkarmy3" | chpasswd && adduser darkarmy3 sudo
+RUN useradd -m darkarmy4 && echo "darkarmy4:darkarmy4" | chpasswd && adduser darkarmy4 sudo
 
 RUN mkdir /var/run/sshd
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -21,6 +22,7 @@ RUN touch /home/darkarmy0/.hushlogin
 RUN touch /home/darkarmy1/.hushlogin
 RUN touch /home/darkarmy2/.hushlogin
 RUN touch /home/darkarmy3/.hushlogin
+RUN touch /home/darkarmy4/.hushlogin
 
 # Level 0
 RUN echo 'echo "Welcome to Spaidy lab"' >> /home/darkarmy0/.bashrc \
@@ -50,6 +52,10 @@ RUN echo "dark_flag{ad8ec66dc93c9b0a84ae}" > /home/darkarmy2/.hidden_folder/flag
 # Level 3
 RUN echo "flag is encoded into a base32 string: MRQXE227MZWGCZ33MMZDENJRHAYWINJYGI4DANZXMRRDMYZVPUFA====" >> /home/darkarmy3/flag.base32
 
+# Level 4
+RUN mkdir -p /home/darkarmy4/
+RUN echo "dark_flag{sf3s4fs434}" > /home/darkarmy4/-
+
 COPY ./nullsafety /usr/bin/nullsafety
 RUN chmod +x /usr/bin/nullsafety
 
@@ -57,6 +63,7 @@ RUN chsh -s /usr/bin/bash darkarmy0
 RUN chsh -s /usr/bin/nullsafety darkarmy1
 RUN chsh -s /usr/bin/nullsafety darkarmy2
 RUN chsh -s /usr/bin/nullsafety darkarmy3
+RUN chsh -s /usr/bin/nullsafety darkarmy4
 
 # Expose SSH port
 EXPOSE 22
