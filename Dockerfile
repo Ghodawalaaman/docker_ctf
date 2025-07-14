@@ -1,23 +1,22 @@
-FROM alpine
+FROM ubuntu
 
-RUN apk add --no-cache \
-    openssh \
+RUN apt update && apt install -y \
+    openssh-server \
     sudo \
     coreutils \
     grep \
     findutils \
-    shadow
+ && rm -rf /var/lib/apt/lists/*
 
-RUN adduser -D -h /home/darkarmy0 darkarmy0 && echo "darkarmy0:darkarmy0" | chpasswd
-RUN adduser -D -h /home/darkarmy1 darkarmy1 && echo "darkarmy1:darkarmy1" | chpasswd
-RUN adduser -D -h /home/darkarmy2 darkarmy2 && echo "darkarmy2:darkarmy2" | chpasswd
-RUN adduser -D -h /home/darkarmy3 darkarmy3 && echo "darkarmy3:darkarmy3" | chpasswd
-RUN adduser -D -h /home/darkarmy4 darkarmy4 && echo "darkarmy4:darkarmy4" | chpasswd
+RUN useradd -m darkarmy0 && echo "darkarmy0:darkarmy0" | chpasswd && adduser darkarmy0 sudo
+RUN useradd -m darkarmy1 && echo "darkarmy1:darkarmy1" | chpasswd && adduser darkarmy1 sudo
+RUN useradd -m darkarmy2 && echo "darkarmy2:darkarmy2" | chpasswd && adduser darkarmy2 sudo
+RUN useradd -m darkarmy3 && echo "darkarmy3:darkarmy3" | chpasswd && adduser darkarmy3 sudo
+RUN useradd -m darkarmy4 && echo "darkarmy4:darkarmy4" | chpasswd && adduser darkarmy4 sudo
 
 RUN mkdir /var/run/sshd
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN ssh-keygen -A
 # Trying to remove the annoying message when ssh into the server
 RUN touch /home/darkarmy0/.hushlogin
 RUN touch /home/darkarmy1/.hushlogin
