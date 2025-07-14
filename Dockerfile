@@ -38,7 +38,7 @@ RUN mkdir -p /home/darkarmy1/dungeon \
 RUN touch "/home/darkarmy1/FLAG{LOGIN_SUCCESS}" \
     && echo "Don't forget to feed the dragon!" > /home/darkarmy1/notes.txt \
     && echo "Last seen flying over sector 7..." > /home/darkarmy1/dragon.log \
-    && echo "FLAG{dragon_approved_shell}" > "/home/darkarmy1/dungeon/FLAG{dungeon_found}" \
+    && echo "dark_flag{372ff9bf22e15915da79}" > "/home/darkarmy1/dungeon/FLAG{dungeon_found}" \
     && echo "RkxBR3tkcmFnb25fYXBwcm92ZWRfc2hlbGx9" > "/home/darkarmy1/lair/scroll.md" \
     && echo "464c41477b647261676f6e5f617070726f7665645f7368656c6c7d" > "/home/darkarmy1/lair/trap/hex.flag" \
     && echo "IJQWQYLUMEQGS4ZAMEQW45DJNZ2W45DFOJUXGZJA" > "/home/darkarmy1/cave/base32.flag" \
