@@ -32,6 +32,6 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        push: true
+        push: false
         tags: latest
         labels: spaidy_docker
